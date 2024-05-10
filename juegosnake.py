@@ -1,8 +1,15 @@
 from turtle import *
 from random import randrange
 from freegames import square, vector
+import random
+#Se agregan cambios aleatorios a las coordenadas en las que aparece la comida con el uso de la librería random
+numero_aleatorio1 = random.randint(-200, 190)
+numero_aleatorio2 = random.randint(-200, 190)
+food = vector(numero_aleatorio1, numero_aleatorio2)
 
-food = vector(0, 0)
+
+
+
 snake = [vector(10, 0)]
 aim = vector(0, -10)
 
@@ -29,7 +36,7 @@ def move():
 
     if head == food:
         print('Snake:', len(snake))
-        food.x = randrange(-15, 15) * 10
+        food.x = randrange(-15, 55) * 10
         food.y = randrange(-15, 15) * 10
     else:
         snake.pop(0)
