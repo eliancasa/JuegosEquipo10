@@ -7,6 +7,7 @@ path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
 pacman = vector(-40, -80)
+direccionpacman =0
 ghosts = [
     [vector(-180, 160), vector(5, 0)],
     [vector(-180, -160), vector(0, 5)],
@@ -114,16 +115,17 @@ def move():
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
-        else:
-            options = [
+        options = [
                 vector(5, 0),
                 vector(-5, 0),
                 vector(0, 5),
                 vector(0, -5),
             ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
+        # Se toma la direccion que otorga la funcion change y se toma del array options
+        plan = options[direccionpacman]
+        #Se asigna como dirección la misma que el pacman
+        course.x = plan.x
+        course.y = plan.y
 
         up()
         goto(point.x + 10, point.y + 10)
@@ -138,10 +140,20 @@ def move():
     ontimer(move, 100)
 
 def change(x, y):
+    global direccionpacman
     "Change pacman aim if valid."
     if valid(pacman + vector(x, y)):
         aim.x = x
         aim.y = y
+    #Se establece la dirección en la que va el pacman y se asigna a una variable
+    if x==5 and y==0:
+        direccionpacman=0
+    elif x==-5 and y==0:
+        direccionpacman=1
+    elif x==0 and y==5:
+        direccionpacman=2
+    elif x==0 and y==-5:
+        direccionpacman=3
 
 setup(420, 420, 370, 0)
 hideturtle()
