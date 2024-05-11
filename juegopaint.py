@@ -40,12 +40,33 @@ def circle(start, end):
     pass  # TODO
 
 def rectangle(start, end):
-    "Draw rectangle from start to end."
-    pass  # TODO
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+
+    ladoa = end[1]-start[1]
+    ladob = end[0]-start[0]
+    for i in range(2):
+        forward(ladob)
+        left(90)
+        forward(ladoa)
+        left(90)
+
+
+
 
 def triangle(start, end):
-    "Draw triangle from start to end."
-    pass  # TODO
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+
+    ladoa = end[0]-start[0]
+    for i in range(3):
+        forward(ladoa)
+        left(120)
+
 
 def tap(x, y):
     "Store starting point or draw shape."
